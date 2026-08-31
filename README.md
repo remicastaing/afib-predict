@@ -7,7 +7,7 @@
 
 Travail mené dans le cadre du Certificat de spécialisation *Intelligence artificielle en santé* du Cnam.
 
-📄 **[Lire le manuscrit (PDF, 23 pages)](manuscrit/afib-predict-manuscrit.pdf)**
+📄 **[Lire le manuscrit (PDF, 23 pages)](manuscrit/afib-predict-manuscrit.pdf)** · 🖼️ **[Voir le poster](https://remicastaing.github.io/afib-predict/poster/poster.html)** (format A0 — pensez à dézoomer)
 
 ## La question
 

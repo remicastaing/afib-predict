@@ -7,7 +7,7 @@
 
 Travail mené dans le cadre du Certificat de spécialisation *Intelligence artificielle en santé* du Cnam.
 
-📄 **[Lire le manuscrit (PDF, 23 pages)](manuscrit/afib-predict-manuscrit.pdf)** · 🖼️ **[Voir le poster](https://remicastaing.github.io/afib-predict/poster/poster.html)** (format A0 — pensez à dézoomer)
+📄 **[Lire le manuscrit (PDF, 23 pages)](manuscrit/afib-predict-manuscrit.pdf)** · 🖼️ **[Voir le poster](https://remicastaing.github.io/afib-predict/poster/poster_web.html)**
 
 ## La question
 
@@ -41,6 +41,4 @@ Python 3.11 · [pixi](https://pixi.sh) pour l'environnement · Polars + Parquet 
 
 ## Auteur
 
-Rémi Castaing — Conservatoire national des arts et métiers.
-
-<a href="https://www.linkedin.com/in/remicastaing/"><img src="assets/linkedin.svg" alt="LinkedIn" width="18" height="18" align="top"></a> [linkedin.com/in/remicastaing](https://www.linkedin.com/in/remicastaing/)
+<a href="https://www.linkedin.com/in/remicastaing/"><img src="assets/linkedin.svg" alt="LinkedIn" width="18" height="18" align="top"></a> [Rémi Castaing](https://www.linkedin.com/in/remicastaing/)  — Conservatoire national des arts et métiers.

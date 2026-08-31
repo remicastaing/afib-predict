@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poster — AFIB-Predict</title>
+<!--
+  Enveloppe de consultation du poster A0.
+
+  Le poster est un document d'impression : 841 × 1189 mm, soit 3179 × 4493 px CSS, une taille
+  qu'aucune fenêtre n'affiche telle quelle. Cette page le charge dans un cadre et le met à
+  l'échelle de la largeur disponible, sans toucher au master : poster.html reste la source unique,
+  et l'export PDF A0 continue d'en sortir inchangé. La mise à l'échelle est une transformation
+  du rendu, donc le texte et les figures restent nets à tout niveau de zoom — contrairement à
+  une capture PNG.
+-->
+<style>
+  :root { --fond: #eceff2; --encre: #11304C; --trait: #cfd8de; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--fond); }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: var(--encre); }
+
+  .barre {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+    padding: 10px 16px; background: #fff; border-bottom: 1px solid var(--trait);
+    position: sticky; top: 0; z-index: 2; font-size: 14px;
+  }
+  .barre strong { font-size: 15px; }
+  .barre .pousse { margin-left: auto; }
+  .barre a { color: #0A66C2; text-decoration: none; }
+  .barre a:hover { text-decoration: underline; }
+  .barre button {
+    font: inherit; cursor: pointer; padding: 4px 10px; border-radius: 6px;
+    border: 1px solid var(--trait); background: #fff; color: var(--encre);
+  }
+  .barre button[aria-pressed="true"] { background: var(--encre); border-color: var(--encre); color: #fff; }
+
+  .zone { padding: 16px; overflow-x: auto; }
+  .cadre {
+    margin: 0 auto; overflow: hidden; background: #fff;
+    box-shadow: 0 2px 14px rgba(17, 48, 76, 0.18);
+  }
+  .cadre iframe { border: 0; display: block; transform-origin: 0 0; }
+
+  @media (prefers-color-scheme: dark) {
+    :root { --fond: #1c2126; --encre: #e6edf3; --trait: #30363d; }
+    .barre { background: #22272e; }
+    .barre button { background: #22272e; color: var(--encre); }
+    .barre button[aria-pressed="true"] { background: var(--encre); color: #22272e; }
+  }
+</style>
+</head>
+<body>
+
+<div class="barre">
+  <strong>AFIB-Predict — poster</strong>
+  <span>Format A0 (841 × 1189 mm)</span>
+  <span class="pousse"></span>
+  <button id="btn-largeur" aria-pressed="true">Ajuster à la largeur</button>
+  <button id="btn-taille" aria-pressed="false">Taille réelle</button>
+  <a href="../">Le projet</a>
+</div>
+
+<div class="zone" id="zone">
+  <div class="cadre" id="cadre">
+    <iframe id="poster" src="poster.html" title="Poster AFIB-Predict" scrolling="no"></iframe>
+  </div>
+</div>
+
+<script>
+  // Dimensions natives du poster, dérivées des millimètres du master (96 px par pouce).
+  const MM_PX = 96 / 25.4;
+  const W = Math.round(841 * MM_PX), H = Math.round(1189 * MM_PX);
+
+  const zone = document.getElementById('zone');
+  const cadre = document.getElementById('cadre');
+  const poster = document.getElementById('poster');
+  const btnLargeur = document.getElementById('btn-largeur');
+  const btnTaille = document.getElementById('btn-taille');
+
+  poster.style.width = W + 'px';
+  poster.style.height = H + 'px';
+
+  let ajustee = true;
+
+  function appliquer() {
+    const dispo = zone.clientWidth - 32; // le padding de .zone
+    const k = ajustee ? Math.min(dispo / W, 1) : 1;
+    poster.style.transform = 'scale(' + k + ')';
+    cadre.style.width = Math.round(W * k) + 'px';
+    cadre.style.height = Math.round(H * k) + 'px';
+    btnLargeur.setAttribute('aria-pressed', String(ajustee));
+    btnTaille.setAttribute('aria-pressed', String(!ajustee));
+  }
+
+  btnLargeur.addEventListener('click', () => { ajustee = true; appliquer(); });
+  btnTaille.addEventListener('click', () => { ajustee = false; appliquer(); });
+  window.addEventListener('resize', appliquer);
+  appliquer();
+</script>
+
+</body>
+</html>

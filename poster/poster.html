@@ -35,7 +35,7 @@
   header { padding: 14mm 25mm 0 25mm; position: relative; }
   .surtitre { display: inline-block; font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 19pt; }
   .surtitre .bloc { display: block; width: max-content; border: 0.8mm solid var(--bleu-fonce); padding: 1.5mm 5mm; background: #fff; }
-  .surtitre .bloc + .bloc { margin-top: -0.8mm; margin-left: 12mm; }
+  .surtitre .bloc + .bloc { margin-top: -0.8mm; margin-left: 12mm; width: 85.8mm; text-align: center; box-sizing: border-box; }
   .logo { position: absolute; top: 16mm; right: 25mm; height: 32mm; }
   .logo-projet { position: absolute; top: 52.7mm; left: 25mm; height: 48mm; }
   header h1, header .soustitre, header .auteurs { margin-left: 96mm; }
@@ -97,10 +97,13 @@
   .titre-message { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 31pt; margin-bottom: 4mm; line-height: 1.2; }
   .titre-message .rouge { color: var(--rouge); }
   .fig-dominante { margin-bottom: 5mm; }
-  .fig-dominante img { width: 92%; margin: 0 auto; }
-  .carte-contrastes { background: var(--bleu-clair-20); padding: 4mm 5mm 3mm 5mm; margin-bottom: 5mm; }
+  .fig-dominante img { width: 88%; margin: 0 auto; }
+  .carte-contrastes .fig-dominante img { width: 84%; }
+  .carte-contrastes { background: var(--bleu-clair-20); padding: 5mm 6mm 3mm 6mm; margin-bottom: 5mm; }
   .carte-contrastes .fig-dominante { margin-bottom: 0; }
-  .deux-colonnes { display: grid; grid-template-columns: 1.1fr 1fr; gap: 10mm; margin-top: 7mm; align-items: stretch; }
+  .carte-contrastes .titre-carte { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 29pt; line-height: 1.2; margin-bottom: 1.5mm; }
+  .carte-contrastes .sous-titre-carte { font-family: 'Raleway', sans-serif; font-size: 18pt; color: var(--gris); margin-bottom: 3mm; }
+  .deux-colonnes { display: grid; grid-template-columns: 1.1fr 1fr; gap: 10mm; margin-top: 6mm; align-items: stretch; }
 
   /* ===== ⑤ Bandeau représentation & adaptation ===== */
   .adaptation {
@@ -146,8 +149,8 @@
   <!-- ① En-tête -->
   <header>
     <div class="surtitre">
-      <span class="bloc">Poster scientifique</span>
-      <span class="bloc">Certificat IA en santé — 2026</span>
+      <span class="bloc">Certificat de Spécialisation</span>
+      <span class="bloc">IA en Santé 2026</span>
     </div>
     <img class="logo" src="figures/leCnam_Logo-2024_CMJN.png" alt="Cnam">
     <img class="logo-projet" src="figures/logo_afib.png" alt="AFIB-Predict">
@@ -188,7 +191,7 @@
       </div>
 
       <div class="bloc-note">
-        <h2>Une échelle, un facteur par barreau</h2>
+        <h2>La méthode</h2>
         <p>Six modèles emboîtés, du clinique seul à la fusion : chaque marche n'ajoute qu'une information, l'écart entre deux marches est donc attribuable à cette information seule. Trois fuites neutralisées par construction :</p>
         <ul>
           <li>aucune variable postérieure à l'ECG index ;</li>
@@ -213,13 +216,15 @@
 
     <!-- ④ Colonne droite : résultats -->
     <section>
-      <h2>Résultats — la passe verrouillée</h2>
+      <h2>Résultats</h2>
       <p class="titre-message">L'apport de l'ECG est établi ; celui de l'adaptation de l'encodeur <span class="rouge">ne l'est pas</span>.</p>
       <figure class="fig-dominante">
         <img src="figures/holdout-bras-slide.png" alt="Forest plot des six bras">
         <figcaption>Les six bras sur le jeu de test verrouillé : AUC à un an, IC 95 % bootstrap au niveau patient. L'échelle tient marche par marche — et les embeddings seuls dépassent déjà le dossier clinique complet.</figcaption>
       </figure>
       <div class="carte-contrastes">
+        <p class="titre-carte">Les cinq contrastes pré-spécifiés</p>
+        <p class="sous-titre-carte">27 618 patients · 838 événements · écarts appariés patient à patient</p>
         <figure class="fig-dominante">
           <img src="figures/forest_contrastes_holdout.png" alt="Forest plot des cinq contrastes">
           <figcaption>Les cinq comparaisons pré-enregistrées : écarts d'AUC appariés, seuls interprétables. Le contraste primaire — fusion contre clinique seul — est mis en évidence.</figcaption>
@@ -242,7 +247,7 @@
 
   <!-- ⑤ Bandeau adaptation -->
   <div class="adaptation">
-    <h2>Adapter l'encodeur : une recette soignée — et un apport que 838 événements n'établissent pas</h2>
+    <h2>Adapter l'encodeur : LoRA et cinq augmentations</h2>
     <p class="chapeau">Le dernier barreau de l'échelle adapte l'encodeur par LoRA (Low-Rank Adaptation), avec cinq augmentations du signal d'apprentissage. En développement, ce bras était le favori — mais aussi le plus sélectionné. Sur le jeu verrouillé, c'est lui qui recule le plus (−0,014) : une partie de son avance venait de la sélection, pas de l'adaptation.</p>
     <div class="frise">
       <figure>

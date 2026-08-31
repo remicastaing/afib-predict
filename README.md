@@ -1,3 +1,6 @@
+<img src="assets/logo_afib.png" alt="AFIB-Predict" height="92" align="left">
+<img src="assets/leCnam_Logo-2024_CMJN.png" alt="Cnam" height="58" align="right">
+
 # AFIB-Predict
 
 **Prédire la fibrillation atriale incidente à partir d'un ECG 12-dérivations et du dossier clinique — et mesurer ce que l'ECG apporte vraiment.**

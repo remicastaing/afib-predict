@@ -7,6 +7,8 @@
 
 Travail mené dans le cadre du Certificat de spécialisation *Intelligence artificielle en santé* du Cnam.
 
+📄 **[Lire le manuscrit (PDF, 23 pages)](manuscrit/afib-predict-manuscrit.pdf)**
+
 ## La question
 
 Prédire une fibrillation atriale (FA) *future* chez un patient qui n'en a pas n'est pas la même tâche que détecter une FA *présente* sur le tracé — la seconde est un problème largement résolu, la première beaucoup moins. La littérature ne s'accorde pas sur le point qui décide de l'intérêt clinique : le signal ECG ajoute-t-il quelque chose à ce que le dossier clinique prédit déjà ?
@@ -31,7 +33,7 @@ L'apport de l'**adaptation** de l'encodeur, qui semblait acquis en développemen
 
 Ce dépôt public présente le projet. Il ne contient **aucune donnée** : MIMIC-IV et MIMIC-IV-ECG sont distribuées par PhysioNet sous accord d'utilisation (DUA), et ni les signaux, ni les tables cliniques, ni aucun dérivé (embeddings compris) ne peuvent y figurer. L'accès aux données passe par PhysioNet, pas par ici.
 
-Le code, le vault de connaissance, le manuscrit et les rapports d'expérience vivent dans un dépôt privé.
+Le manuscrit complet est ici, dans [`manuscrit/`](manuscrit/afib-predict-manuscrit.pdf). Le code, le vault de connaissance et les rapports d'expérience vivent dans un dépôt privé.
 
 ## Stack
 

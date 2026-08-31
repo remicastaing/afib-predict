@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Poster A0 — AFIB-Predict</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ===== Charte Cnam ===== */
+  :root {
+    --rouge: #C1002A;
+    --gris: #405A68;
+    --bleu-fonce: #11304C;
+    --bleu-medium: #4485C5;
+    --bleu-clair: #A1D6DF;
+    --lime: #DDDC00;
+    --bleu-clair-20: rgba(161, 214, 223, 0.20);
+    --bleu-clair-40: rgba(161, 214, 223, 0.40);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: 841mm 1189mm; margin: 0; }
+  html, body { background: #fff; }
+  body {
+    width: 841mm; height: 1189mm;
+    font-family: 'Crimson Pro', Georgia, serif;
+    color: var(--bleu-fonce);
+    font-size: 25pt; line-height: 1.3;
+    position: relative; overflow: hidden;
+  }
+  .page { width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+  h1, h2, h3, .kicker, figcaption { font-family: 'Raleway', 'Helvetica Neue', Arial, sans-serif; }
+
+  /* ===== ① En-tête ===== */
+  header { padding: 14mm 25mm 0 25mm; position: relative; }
+  .surtitre { display: inline-block; font-family: 'Crimson Pro', serif; font-weight: 600; font-size: 19pt; }
+  .surtitre .bloc { display: block; width: max-content; border: 0.8mm solid var(--bleu-fonce); padding: 1.5mm 5mm; background: #fff; }
+  .surtitre .bloc + .bloc { margin-top: -0.8mm; margin-left: 12mm; }
+  .logo { position: absolute; top: 16mm; right: 25mm; height: 32mm; }
+  .logo-projet { position: absolute; top: 52.7mm; left: 25mm; height: 48mm; }
+  header h1, header .soustitre, header .auteurs { margin-left: 96mm; }
+  h1 {
+    margin-top: 9mm;
+    font-size: 68pt; font-weight: 800; line-height: 1.08;
+    letter-spacing: -0.5pt; max-width: 760mm;
+  }
+  .soustitre { margin-top: 4mm; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: 27pt; color: var(--gris); }
+  .auteurs { margin-top: 3.5mm; font-family: 'Raleway', sans-serif; font-size: 22pt; }
+  .auteurs strong { font-weight: 600; }
+
+  /* ===== ② Bandeau message (marge irrégulière : touche le bord gauche) ===== */
+  .message {
+    margin: 10mm 60mm 0 0;
+    background: var(--bleu-fonce); color: #fff;
+    padding: 10mm 18mm 10mm 25mm;
+    display: flex; align-items: center; gap: 16mm;
+  }
+  .message .chiffre { font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 96pt; line-height: 0.95; white-space: nowrap; }
+  .message .chiffre small { display: block; font-weight: 400; font-size: 22pt; letter-spacing: 0.5pt; margin-top: 2mm; }
+  .message p { font-size: 29pt; line-height: 1.28; }
+  .message .def { display: block; margin-top: 3mm; font-size: 19pt; color: var(--bleu-clair); font-style: italic; }
+
+  /* ===== Corps : deux colonnes ===== */
+  main { flex: 1; display: grid; grid-template-columns: 296mm 1fr; gap: 14mm; padding: 10mm 25mm 0 25mm; min-height: 0; }
+  main section { display: flex; flex-direction: column; }
+  main section > :last-child { margin-top: auto; }
+  section h2 {
+    font-size: 36pt; font-weight: 700; color: var(--bleu-fonce);
+    border-bottom: 1.2mm solid var(--bleu-medium);
+    padding-bottom: 1.5mm; margin-bottom: 4mm;
+  }
+  .bloc-note { margin-bottom: 8mm; }
+  ul { list-style: none; }
+  li { padding-left: 8mm; position: relative; margin-bottom: 2mm; }
+  li::before { content: ""; position: absolute; left: 0; top: 4.4mm; width: 3.6mm; height: 3.6mm; background: var(--bleu-medium); }
+  figure img { display: block; max-width: 100%; }
+  figcaption { font-size: 18pt; color: var(--gris); margin-top: 2mm; line-height: 1.25; }
+
+  /* Cohorte : flowchart + puces côte à côte */
+  .cohorte-flex { display: flex; gap: 7mm; align-items: flex-start; }
+  .cohorte-flex figure { flex-shrink: 0; }
+  .cohorte-flex img { height: 146mm; width: auto; }
+  .cohorte-flex ul { flex: 1; padding-top: 2mm; }
+
+  .fig-stmem img { height: 134mm; width: auto; margin: 0 auto; }
+
+  /* Encadré verrou / non-établi */
+  .encadre {
+    border: 1mm solid var(--bleu-fonce); background: var(--bleu-clair-20);
+    padding: 5mm 7mm;
+  }
+  .encadre .titre-encadre { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 25pt; margin-bottom: 2mm; }
+  .encadre.rouge { border-color: var(--rouge); background: #fff; }
+  .encadre.rouge .titre-encadre { color: var(--rouge); }
+
+  /* Résultats */
+  .titre-message { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 31pt; margin-bottom: 4mm; line-height: 1.2; }
+  .titre-message .rouge { color: var(--rouge); }
+  .fig-dominante { margin-bottom: 5mm; }
+  .fig-dominante img { width: 92%; margin: 0 auto; }
+  .carte-contrastes { background: var(--bleu-clair-20); padding: 4mm 5mm 3mm 5mm; margin-bottom: 5mm; }
+  .carte-contrastes .fig-dominante { margin-bottom: 0; }
+  .deux-colonnes { display: grid; grid-template-columns: 1.1fr 1fr; gap: 10mm; margin-top: 7mm; align-items: stretch; }
+
+  /* ===== ⑤ Bandeau représentation & adaptation ===== */
+  .adaptation {
+    margin-top: 15mm; padding: 8mm 25mm 9mm 25mm;
+    background: var(--bleu-clair-20);
+  }
+  .adaptation h2 { font-size: 36pt; font-weight: 700; border-bottom: 1.2mm solid var(--bleu-medium); padding-bottom: 1.5mm; margin-bottom: 3mm; }
+  .adaptation .chapeau { font-size: 23pt; margin-bottom: 6mm; max-width: 770mm; }
+  .frise { display: flex; justify-content: space-between; align-items: stretch; }
+  .frise figure { background: #fff; padding: 3mm; border: 0.4mm solid var(--bleu-clair); flex-shrink: 0; }
+  .frise img { height: 101mm; width: auto; }
+  .frise figcaption { font-size: 16pt; width: 0; min-width: 100%; }
+  .frise figcaption strong { font-size: 17pt; color: var(--bleu-fonce); display: block; margin-bottom: 0.5mm; }
+
+  /* ===== ⑥ Limites + conclusion ===== */
+  .fin { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14mm; padding: 8mm 25mm 0 25mm; }
+  .fin h2 { font-size: 36pt; font-weight: 700; border-bottom: 1.2mm solid var(--bleu-medium); padding-bottom: 1.5mm; margin-bottom: 4mm; }
+  .limite { margin-bottom: 3mm; font-size: 23pt; }
+  .limite strong { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 22pt; }
+  .conclusion { background: var(--bleu-fonce); color: #fff; padding: 6mm 9mm; }
+  .conclusion h2 { color: #fff; border-bottom-color: var(--bleu-medium); }
+  .conclusion p { margin-bottom: 2.5mm; font-size: 24pt; }
+  .conclusion .reserve { color: var(--bleu-clair); font-style: italic; }
+
+  /* ===== Pied ===== */
+  footer {
+    margin-top: 7mm; padding: 4mm 25mm 8mm 25mm;
+    border-top: 0.6mm solid var(--bleu-clair);
+    display: flex; align-items: center; gap: 12mm;
+    font-size: 16pt; color: var(--gris); line-height: 1.3;
+  }
+  footer .refs { flex: 1; }
+  /* pas de cadre autour du QR : la bordure empiéterait sur la zone silencieuse */
+  footer .qr { display: flex; flex-direction: column; align-items: center; gap: 1.5mm; text-align: center; font-size: 13pt; flex-shrink: 0; }
+  footer .qr img { width: 40mm; height: 40mm; display: block; }
+  footer .qr img.logo-linkedin { width: 26mm; height: auto; }
+  footer .qr span { font-weight: 700; color: var(--bleu-fonce); font-size: 16pt; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ① En-tête -->
+  <header>
+    <div class="surtitre">
+      <span class="bloc">Poster scientifique</span>
+      <span class="bloc">Certificat IA en santé — 2026</span>
+    </div>
+    <img class="logo" src="figures/leCnam_Logo-2024_CMJN.png" alt="Cnam">
+    <img class="logo-projet" src="figures/logo_afib.png" alt="AFIB-Predict">
+    <h1>Prédiction de la fibrillation atriale incidente à partir d'ECG</h1>
+    <div class="soustitre">Valeur incrémentale de représentations ECG gelées et adaptées, sous évaluation de survie pré-enregistrée — MIMIC-IV</div>
+    <div class="auteurs"><strong>Rémi Castaing</strong> · Conservatoire national des arts et métiers</div>
+  </header>
+
+  <!-- ② Bandeau message -->
+  <div class="message">
+    <div class="chiffre">+0,058<small>d'AUC à un an &nbsp;·&nbsp; IC 95 % [+0,047 ; +0,069]</small></div>
+    <p>La fusion du dossier clinique et d'une représentation apprise de l'ECG surpasse le modèle clinique seul — mesuré <strong>une seule fois</strong>, sur des données verrouillées qu'aucune étape de sélection n'avait touchées.
+      <span class="def">AUC : aire sous la courbe ROC, la capacité à classer les patients par risque — 0,5 = hasard, 1 = discrimination parfaite.</span>
+    </p>
+  </div>
+
+  <main>
+    <!-- ③ Colonne gauche -->
+    <section>
+      <div class="bloc-note">
+        <h2>La question</h2>
+        <p><strong>Prédire une FA future n'est pas détecter une FA présente.</strong> La fibrillation atriale, souvent silencieuse, expose à l'AVC et à l'insuffisance cardiaque. Or la littérature ne s'accorde pas : le signal ECG <em>ajoute-t-il</em> quelque chose à ce que le dossier clinique prédit déjà ? C'est cet apport <strong>incrémental</strong> qui est mesuré ici.</p>
+      </div>
+
+      <div class="bloc-note">
+        <h2>Les données</h2>
+        <div class="cohorte-flex">
+          <figure>
+            <img src="figures/cohort_flowchart.png" alt="Flowchart de la cohorte">
+          </figure>
+          <ul>
+            <li>Cohorte de <strong>138 083 patients</strong> de MIMIC-IV, indemnes de FA à leur ECG index.</li>
+            <li>FA antérieure exclue (diagnostics + rapports d'ECG).</li>
+            <li>Décès traité en <strong>risque concurrent</strong> ; censure pondérée (IPCW).</li>
+            <li>Jeu de test de <strong>27 618 patients</strong> (838 FA à un an) mis sous clé dès l'assemblage.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloc-note">
+        <h2>Une échelle, un facteur par barreau</h2>
+        <p>Six modèles emboîtés, du clinique seul à la fusion : chaque marche n'ajoute qu'une information, l'écart entre deux marches est donc attribuable à cette information seule. Trois fuites neutralisées par construction :</p>
+        <ul>
+          <li>aucune variable postérieure à l'ECG index ;</li>
+          <li>séparation train/test au niveau <strong>patient</strong>, jamais ECG ;</li>
+          <li>encodeur pré-entraîné sans chevauchement avec l'évaluation.</li>
+        </ul>
+      </div>
+
+      <div class="bloc-note">
+        <h2>L'encodeur ST-MEM</h2>
+        <figure class="fig-stmem">
+          <img src="figures/stmem_architecture.png" alt="Architecture ST-MEM">
+          <figcaption>12 dérivations × 9 s → un vecteur de 768 dimensions. 86 millions de paramètres, tous gelés : l'encodeur n'apprend rien de nos patients.</figcaption>
+        </figure>
+      </div>
+
+      <div class="encadre">
+        <div class="titre-encadre">Le verrou : une passe unique, pré-enregistrée</div>
+        <p>Six bras, cinq comparaisons et leurs interdits fixés dans un document signé <em>avant</em> toute ouverture du jeu de test. Ouvert une seule fois, le 27 août 2026 : rien n'a pu être choisi après coup.</p>
+      </div>
+    </section>
+
+    <!-- ④ Colonne droite : résultats -->
+    <section>
+      <h2>Résultats — la passe verrouillée</h2>
+      <p class="titre-message">L'apport de l'ECG est établi ; celui de l'adaptation de l'encodeur <span class="rouge">ne l'est pas</span>.</p>
+      <figure class="fig-dominante">
+        <img src="figures/holdout-bras-slide.png" alt="Forest plot des six bras">
+        <figcaption>Les six bras sur le jeu de test verrouillé : AUC à un an, IC 95 % bootstrap au niveau patient. L'échelle tient marche par marche — et les embeddings seuls dépassent déjà le dossier clinique complet.</figcaption>
+      </figure>
+      <div class="carte-contrastes">
+        <figure class="fig-dominante">
+          <img src="figures/forest_contrastes_holdout.png" alt="Forest plot des cinq contrastes">
+          <figcaption>Les cinq comparaisons pré-enregistrées : écarts d'AUC appariés, seuls interprétables. Le contraste primaire — fusion contre clinique seul — est mis en évidence.</figcaption>
+        </figure>
+      </div>
+
+      <div class="deux-colonnes">
+        <figure>
+          <img src="figures/calibration_dca_holdout.png" alt="Calibration et bénéfice net">
+          <figcaption>Les risques prédits sont directement utilisables : pentes de calibration 0,99–1,06, bénéfice net supérieur sur toute la plage de seuils de décision.</figcaption>
+        </figure>
+        <div class="encadre rouge">
+          <div class="titre-encadre">Ce qui n'est pas établi</div>
+          <p>Une fois les embeddings présents, les marqueurs conventionnels n'ajoutent <strong>plus rien</strong> (+0,0003) : la représentation apprise couvre leur information — l'inverse n'est pas vrai.</p>
+          <p style="margin-top:3mm">L'apport de l'<strong>adaptation</strong> de l'encodeur : +0,004, IC 95 % [−0,001 ; +0,010]. <strong>L'intervalle contient zéro : l'apport n'est pas établi.</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ⑤ Bandeau adaptation -->
+  <div class="adaptation">
+    <h2>Adapter l'encodeur : une recette soignée — et un apport que 838 événements n'établissent pas</h2>
+    <p class="chapeau">Le dernier barreau de l'échelle adapte l'encodeur par LoRA (Low-Rank Adaptation), avec cinq augmentations du signal d'apprentissage. En développement, ce bras était le favori — mais aussi le plus sélectionné. Sur le jeu verrouillé, c'est lui qui recule le plus (−0,014) : une partie de son avance venait de la sélection, pas de l'adaptation.</p>
+    <div class="frise">
+      <figure>
+        <img src="figures/stmem_lora_architecture.png" alt="ST-MEM + LoRA">
+        <figcaption><strong>LoRA (Low-Rank Adaptation)</strong>1,4 % des paramètres entraînés, l'encodeur reste gelé.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/vcg_rotation.png" alt="Rotation VCG">
+        <figcaption><strong>Rotation VCG</strong>Tourner le cœur entier, pas chaque dérivation — dipôle reconstruit, tourné, reprojeté.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/simvea.png" alt="SimVEA">
+        <figcaption><strong>SimVEA</strong>Reconstruire une précordiale à partir de ses voisines.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/masquage.png" alt="Masquage">
+        <figcaption><strong>Masquage</strong>Effacer des dérivations ou 0,5 s de signal.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/decalage_temporel.png" alt="Décalage temporel">
+        <figcaption><strong>Décalage</strong>Déplacer la fenêtre de 9 s, sans toucher au signal.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/echelle_amplitude.png" alt="Échelle d'amplitude">
+        <figcaption><strong>Échelle</strong>Un gain par dérivation, tiré au sort à chaque époque.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- ⑥ Limites + conclusion -->
+  <div class="fin">
+    <section>
+      <h2>Limites</h2>
+      <div class="limite"><strong>Biais de surveillance.</strong> Un patient plus surveillé a plus de FA détectée ; le verrou ne lève pas ce biais — il est documenté et borné, non ignoré. C'est la limite la plus sérieuse.</div>
+      <div class="limite"><strong>Pas de validation externe.</strong> Même hôpital, mêmes pratiques de codage : la généralisation reste à démontrer — c'est la perspective immédiate.</div>
+      <div class="limite"><strong>Puissance.</strong> 838 événements suffisent pour des écarts de cinq centièmes, pas de quelques millièmes : le protocole avait anticipé cette borne.</div>
+    </section>
+    <section class="conclusion">
+      <h2>À retenir</h2>
+      <p>L'ECG apporte une information prédictive propre, que le dossier clinique ne contient pas — mesurée sur données verrouillées.</p>
+      <p>La représentation apprise couvre l'information des marqueurs conventionnels ; l'inverse n'est pas vrai.</p>
+      <p class="reserve">Aucune utilité clinique n'est revendiquée avant validation externe.</p>
+    </section>
+  </div>
+
+  <!-- Pied -->
+  <footer>
+    <div class="qr">
+      <img src="figures/qr_linkedin.svg" alt="QR code LinkedIn">
+      <img class="logo-linkedin" src="figures/linkedin_logo.png" alt="LinkedIn">
+    </div>
+    <div class="refs">
+      <strong>Données</strong> : MIMIC-IV et MIMIC-IV-ECG (PhysioNet, sous accord d'utilisation — tracés illustratifs synthétiques, aucune donnée patient sur ce poster). <strong>Encodeur</strong> : ST-MEM (Na et al., 2024), pré-entraîné hors MIMIC. Manuscrit et pré-enregistrement : via le QR code. Merci à l'équipe pédagogique du Cnam.
+    </div>
+    <div class="qr">
+      <img src="figures/qr_repo.svg" alt="Lien vers le manuscrit">
+      <span>Manuscrit</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
